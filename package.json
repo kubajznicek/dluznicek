@@ -1,5 +1,5 @@
 {
-  "name": "kuba",
+  "name": "dluznicek",
   "version": "0.1.0",
   "homepage": ".",
   "private": true,
@@ -12,10 +12,8 @@
     "react-dnd": "^14.0.2",
     "react-dnd-html5-backend": "^14.0.0",
     "react-dom": "^17.0.2",
-    "react-scripts": "4.0.3",
+    "react-scripts": "^5.0.1",
     "react-tag-input": "^6.7.1"
-  },
-  "devDependencies": {
   },
   "scripts": {
     "start": "react-scripts start",
