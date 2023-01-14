@@ -13,7 +13,10 @@ class Header extends Component {
 
 
   render() {
-    return <h1>Hlavicka</h1>
+    return <div className="Header">
+        <img src="images/hamburger_menu.png" alt="hamburger menu"/>
+        <h1>Dluznicek</h1>
+      </div>
   }
 }
 

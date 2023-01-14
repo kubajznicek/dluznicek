@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
 import Header from './Header'
-import Person from './Person';
+import Person from './Person'
 
 class App extends Component {
 
@@ -42,9 +42,9 @@ class App extends Component {
     return <div>
       <Header />
       <div>{this.state.nakejtext}</div>
+      {people}
       <input type="text" id="novejmeno" className="form-control" placeholder="Paprda do tymu"/>
       <button type="button" className="btn btn-primary" onClick={() => this.addPerson()}>Pridej paprdu</button>
-      {people}
     </div>
   }
 }

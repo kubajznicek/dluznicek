@@ -13,7 +13,12 @@ class Person extends Component {
   }
 
   render() {
-    return <div>Jmeno: {this.props.name}</div>
+    return <div>
+        <div>
+          <img src="images/penizky_malo.png" alt="hromadka penez"/>
+        </div>
+        Jmeno: {this.props.name}
+      </div>
   }
 }
 
