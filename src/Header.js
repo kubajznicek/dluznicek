@@ -13,10 +13,11 @@ class Header extends Component {
 
 
   render() {
-    return <div className="Header">
-        <img src="images/hamburger_menu.png" alt="hamburger menu"/>
-        <h1>Dluznicek</h1>
+    return <div style={{height: '100px'}}>
+      <div className="h-100 container-fluid bg-primary d-flex justify-content-center align-items-center">
+        <a className="text-light text-decoration-none fs-1" href="#">Dlužníček</a>
       </div>
+    </div>
   }
 }
 
