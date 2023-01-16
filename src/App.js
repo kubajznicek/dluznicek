@@ -3,6 +3,7 @@ import './App.css'
 import Header from './Header'
 import Person from './Person'
 
+
 class App extends Component {
 
   constructor(props) {
@@ -10,7 +11,8 @@ class App extends Component {
 
     this.state = {
       nakejtext: "zatim nic",
-      people: []
+      people: [],
+      tabs: "nic"
     };
 
   }
@@ -49,24 +51,29 @@ class App extends Component {
         </div>
       </div>
       {people}  {/*text-capitalize*/}
-
-        <ul className="nav nav-tabs nav-justified">
+      <ul className="nav nav-tabs nav-justified">
           <li className="nav-item">
-            <a className="nav-link active" aria-current="page" href="#">Transakce</a>
+            <button className="nav-link active" id="transakce-tab" data-bs-toggle="tab" data-bs-target="#transakce-tab-pane" type="button" role="tab" aria-controls="transakce-tab-pane" aria-selected="true">Transakce</button>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">Dluhy</a>
+            <button className="nav-link" id="dluhy-tab" data-bs-toggle="tab" data-bs-target="#dluhy-tab-pane" type="button" role="tab" aria-controls="dluhy-tab-pane" aria-selected="false">Dluhy</button>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">Členové</a>
+            <button className="nav-link" id="clenove-tab" data-bs-toggle="tab" data-bs-target="#clenove-tab-pane" type="button" role="tab" aria-controls="clenove-tab-pane" aria-selected="false">Členové</button>
           </li>
         </ul>
-
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="transakce-tab-pane" role="tabpanel" aria-labelledby="transakce-tab" tabindex="0">...</div>
+          <div class="tab-pane fade" id="dluhy-tab-pane" role="tabpanel" aria-labelledby="dluhy-tab" tabindex="0">...</div>
+          <div class="tab-pane fade" id="clenove-tab-pane" role="tabpanel" aria-labelledby="clenove-tab" tabindex="0">...</div>
+        </div>
+      
+      
       <div>{this.state.nakejtext}</div>
       <input type="text" id="novejmeno" className="form-control" placeholder="Paprda do tymu"/>
       <button type="button" className="btn btn-primary" onClick={() => this.addPerson()}>Pridej paprdu</button>
 
-      <div className="fixed-bottom bg-primary fs-3 d-flex align-items-center " style={{height: '70px'}}>
+      <div className="fixed-bottom bg-primary fs-3 d-flex align-items-center" style={{height: '70px'}}>
         <span className="badge rounded-pill bg-light text-dark ms-3">1 EUR = 24 CZK</span>
         <span className="badge rounded-pill bg-warning text-dark ms-3">1 USD = 22 CZK</span>
       </div>

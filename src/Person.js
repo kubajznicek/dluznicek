@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import './Person.css'
 
 class Person extends Component {
 
@@ -15,7 +14,6 @@ class Person extends Component {
   render() {
     return <div>
         <div>
-          <img src="images/penizky_malo.png" alt="hromadka penez"/>
         </div>
         Jmeno: {this.props.name}
       </div>
