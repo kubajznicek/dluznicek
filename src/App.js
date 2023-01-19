@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import './App.css'
 import Header from './Header'
 import Person from './Person'
+import Transakce from './Transakce'
+import Dluhy from './Dluhy'
+import Clenove from './Clenove'
 
 
 class App extends Component {
@@ -43,14 +46,10 @@ class App extends Component {
     
     return <div>
       <Header />
-      <div className="card bg-light my-3 ms-3" style={{width: '13rem'}}>
-        <img src="images/penizky_malo.png" className="card-img-top img-thumbnail" alt="hromadka penez"/>
-        <div className="card-body bg-primary">
-          <h4 className="text-center text-light">Jarda</h4>
-          <p className="card-text text-center text-light">-485 kc</p>
-        </div>
-      </div>
-      {people}  {/*text-capitalize*/}
+
+      <div className="d-flex justify-content-center">{people}</div>
+      
+        {/*text-capitalize*/}
       <ul className="nav nav-tabs nav-justified">
           <li className="nav-item">
             <button className="nav-link active" id="transakce-tab" data-bs-toggle="tab" data-bs-target="#transakce-tab-pane" type="button" role="tab" aria-controls="transakce-tab-pane" aria-selected="true">Transakce</button>
@@ -63,9 +62,9 @@ class App extends Component {
           </li>
         </ul>
         <div class="tab-content" id="myTabContent">
-          <div class="tab-pane fade show active" id="transakce-tab-pane" role="tabpanel" aria-labelledby="transakce-tab" tabindex="0">...</div>
-          <div class="tab-pane fade" id="dluhy-tab-pane" role="tabpanel" aria-labelledby="dluhy-tab" tabindex="0">...</div>
-          <div class="tab-pane fade" id="clenove-tab-pane" role="tabpanel" aria-labelledby="clenove-tab" tabindex="0">...</div>
+          <div class="tab-pane fade show active" id="transakce-tab-pane" role="tabpanel" aria-labelledby="transakce-tab" tabindex="0"> <Transakce /> </div>
+          <div class="tab-pane fade" id="dluhy-tab-pane" role="tabpanel" aria-labelledby="dluhy-tab" tabindex="0"> <Dluhy /> </div>
+          <div class="tab-pane fade" id="clenove-tab-pane" role="tabpanel" aria-labelledby="clenove-tab" tabindex="0"> <Clenove  /> </div>
         </div>
       
       
