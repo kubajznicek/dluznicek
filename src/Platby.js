@@ -1,18 +1,53 @@
 import React, { Component } from "react";
 
+
 class Platby extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      name: "",
+      paidPerson: this.props.people[0],
+      datum: new Date().toLocaleString().slice(0, 8).replaceAll("/","-")
+
     };
   }
 
+  dateChange = (e) => {
+    this.setState({
+      datum: e.target.value
+    })
+    console.log(this.state.datum)
+    document.getElementById("date").value = this.state.datum
+  }
+
+  ulozitHandler = (e) => {
+    const kdoPlatil = document.getElementById("sel1").value
+  }
+
   render() {
+
+    const whomPaidPeople = this.props.people?.map((name) => {
+      return (
+        
+          <div className="d-flex justify-content-between">
+            <h4 className="text-capitalize">{name}</h4> 
+            <input type="number" className="form-control w-25" defaultValue={0} placeholder="Zadejte částku"/>
+          </div>
+
+    );
+  });
+
+  const whoPaidPeople = this.props.people?.map((name) => {
+    return ( 
+        <option className="text-capitalize">{name}</option>     
+    )
+  });
+
     return (
+
       <div>
-          <br></br>
+        <br></br>
+
         <ul className="list-group d-grid col-6 mx-auto">
           <li className="list-group-item d-flex justify-content-between align-items-center">
             <div className="d-flex align-items-center">
@@ -22,6 +57,7 @@ class Platby extends Component {
             <span className="badge bg-primary rounded-pill">-104 CZK</span>
           </li>
         </ul>
+
         <br></br>
 
         
@@ -35,15 +71,30 @@ class Platby extends Component {
         <div className="modal fade" id="PridatPlatbuOkno" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div className="modal-dialog modal-dialog-centered">
             <div className="modal-content">
+
               <div className="modal-header">
                 <h1 className="modal-title fs-5" id="exampleModalLabel">Přidat platbu</h1>
                 <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
+
               <div className="modal-body text-center">
-                <input type="text" id="novejmeno" className="form-control" placeholder="Nový člen do týmu"/>
+                <h6 className="text-start">Kdo platil</h6>
+                <select className="form-select" id="sel1">
+                  <option>Vyber člověka</option>
+                  {whoPaidPeople}
+                </select>
+
+                <h6 className="text-start">Za koho</h6>
+                <div className="d-flex flex-column">
+                  {whomPaidPeople}
+                </div>
+
+                <input type="date" id="date" value="" name="Datum" onChange={this.dateChange}></input>
                 <br></br>
-                <button type="button" className="btn btn-primary" data-bs-dismiss="modal">Přidej platbu</button>
+                <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={this.ulozitHandler}>Uložit</button>
               </div>
+
+
             </div>
           </div>
         </div>

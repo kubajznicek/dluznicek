@@ -17,8 +17,14 @@ class Clenove extends Component {
   }
 
   addPerson () {
-    this.props.addPersonHandler(this.state.novejmeno)
-    
+    this.props.addPersonHandler(this.state.novejmeno) 
+  }
+
+  resetInput () {
+    document.getElementById("novejmeno").value = ""
+    this.setState({
+      novejmeno: ""
+    })
   }
 
 
@@ -39,7 +45,7 @@ class Clenove extends Component {
         <br></br>
 
         <div className="d-grid col-3 mx-auto">
-          <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#PridatClenaOkno">
+          <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#PridatClenaOkno" onClick={() => this.resetInput()}>
             Přidat člena
           </button>
         </div>
@@ -55,7 +61,7 @@ class Clenove extends Component {
               <div className="modal-body text-center">
                 <input type="text" id="novejmeno" className="form-control" placeholder="Nový člen do týmu" onChange={this.nameChange}/>
                 <br></br>
-                <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={() => this.addPerson()}>Přidej člena</button>
+                <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={() => this.addPerson()}>Uložit</button>
               </div>
             </div>
           </div>
