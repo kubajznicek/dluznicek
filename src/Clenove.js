@@ -58,7 +58,7 @@ class Clenove extends Component {
         </div>
 
 
-        <div className="modal fade" id="PridatClenaOkno" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal fade" id="PridatClenaOkno" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div className="modal-dialog modal-dialog-centered">
             <div className="modal-content">
               <div className="modal-header">
