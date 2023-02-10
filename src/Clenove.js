@@ -30,17 +30,24 @@ class Clenove extends Component {
 
 
   render() {
+
+    const clenove = this.props.people?.map((name) => {
+      return ( 
+          <li className="list-group-item d-flex justify-content-between align-items-center">
+            <div className="d-flex align-items-center">
+              <img src="images/profile_picture.png" width="40" height="40" alt="profilový obrázek"/>
+              <h5 className="my-0 ms-2" >{name}</h5>
+            </div>
+            <span className="badge bg-primary rounded-pill">-104 CZK (kolik dluzi/kolik zaplatil za ostatni a jeste mu nebylo vraceno) </span>
+          </li>
+      )
+    });
+
     return (
       <div>
         <br></br>
         <ul className="list-group d-grid col-6 mx-auto">
-          <li className="list-group-item d-flex justify-content-between align-items-center">
-            <div className="d-flex align-items-center">
-              <img src="images/profile_picture.png" width="40" height="40" alt="profilový obrázek"/>
-              <h5 className="my-0 ms-2" >Jarda</h5>
-            </div>
-            <span className="badge bg-primary rounded-pill">-104 CZK (kolik dluzi/kolik zaplatil za ostatni a jeste mu nebylo vraceno) </span>
-          </li>
+          {clenove}
         </ul>
         <br></br>
 
