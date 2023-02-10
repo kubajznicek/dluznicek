@@ -16,8 +16,6 @@ class Platby extends Component {
     this.setState({
       datum: e.target.value
     })
-    console.log(this.state.datum)
-    document.getElementById("date").value = this.state.datum
   }
 
   ulozitHandler = (e) => {
@@ -29,7 +27,7 @@ class Platby extends Component {
     const whomPaidPeople = this.props.people?.map((name) => {
       return (
         
-          <div className="d-flex justify-content-between">
+          <div className="d-flex justify-content-between" key={name}>
             <h4 className="text-capitalize">{name}</h4> 
             <input type="number" className="form-control w-25" defaultValue={0} placeholder="Zadejte částku"/>
           </div>
@@ -39,7 +37,7 @@ class Platby extends Component {
 
   const whoPaidPeople = this.props.people?.map((name) => {
     return ( 
-        <option className="text-capitalize">{name}</option>     
+        <option className="text-capitalize" key={name}>{name}</option>     
     )
   });
 
@@ -68,7 +66,7 @@ class Platby extends Component {
         </div>
 
 
-        <div className="modal fade" id="PridatPlatbuOkno" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal fade" id="PridatPlatbuOkno" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div className="modal-dialog modal-dialog-centered">
             <div className="modal-content">
 
@@ -89,8 +87,8 @@ class Platby extends Component {
                   {whomPaidPeople}
                 </div>
 
-                <input type="date" id="date" value="" name="Datum" onChange={this.dateChange}></input>
-                <br></br>
+                <input id="startDate" className="form-control" type="date" onChange={this.dateChange}/>
+
                 <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={this.ulozitHandler}>Uložit</button>
               </div>
 

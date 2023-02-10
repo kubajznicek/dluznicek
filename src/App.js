@@ -67,9 +67,9 @@ class App extends Component {
           </li>
         </ul>
         <div className="tab-content" id="myTabContent">
-          <div className="tab-pane fade show active" id="transakce-tab-pane" role="tabpanel" aria-labelledby="transakce-tab" tabindex="0"> <Platby people={this.state.people}/> </div>
-          <div className="tab-pane fade" id="dluhy-tab-pane" role="tabpanel" aria-labelledby="dluhy-tab" tabindex="0"> <Dluhy /> </div>
-          <div className="tab-pane fade" id="clenove-tab-pane" role="tabpanel" aria-labelledby="clenove-tab" tabindex="0"> <Clenove addPersonHandler={this.addPerson} /> </div>
+          <div className="tab-pane fade show active" id="transakce-tab-pane" role="tabpanel" aria-labelledby="transakce-tab" tabIndex="0"> <Platby people={this.state.people}/> </div>
+          <div className="tab-pane fade" id="dluhy-tab-pane" role="tabpanel" aria-labelledby="dluhy-tab" tabIndex="1"> <Dluhy /> </div>
+          <div className="tab-pane fade" id="clenove-tab-pane" role="tabpanel" aria-labelledby="clenove-tab" tabIndex="2"> <Clenove addPersonHandler={this.addPerson} /> </div>
         </div>
       
       <div>{this.state.nakejtext}</div>
