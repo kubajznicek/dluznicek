@@ -77,22 +77,19 @@ class Platby extends Component {
 
               <div className="modal-body text-center">
                 <h6 className="text-start">Kdo platil</h6>
-                <select className="form-select" id="sel1">
+                <select className="form-select mb-4" id="sel1">
                   <option>Vyber člověka</option>
                   {whoPaidPeople}
                 </select>
 
                 <h6 className="text-start">Za koho</h6>
-                <div className="d-flex flex-column">
+                <div className="d-flex flex-column mb-4">
                   {whomPaidPeople}
                 </div>
-
-                <input id="startDate" className="form-control" type="date" onChange={this.dateChange}/>
-
+                <h6 className="text-start">Datum</h6>
+                <input id="startDate" className="form-control mb-5" type="date" onChange={this.dateChange}/>
                 <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={this.ulozitHandler}>Uložit</button>
               </div>
-
-
             </div>
           </div>
         </div>

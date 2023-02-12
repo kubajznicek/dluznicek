@@ -33,7 +33,7 @@ class Clenove extends Component {
 
     const clenove = this.props.people?.map((name) => {
       return ( 
-          <li className="list-group-item d-flex justify-content-between align-items-center">
+          <li className="list-group-item d-flex justify-content-between align-items-center" key={name}>
             <div className="d-flex align-items-center">
               <img src="images/profile_picture.png" width="40" height="40" alt="profilový obrázek"/>
               <h5 className="my-0 ms-2" >{name}</h5>
