@@ -13,7 +13,7 @@ class App extends Component {
 
     this.state = {
       nakejtext: "zatim nic",
-      people: ["jarda"],
+      people: ["jarda", "franta"],
     };
 
   }
@@ -24,6 +24,10 @@ class App extends Component {
     this.setState({
       people: ppl
     })
+  }
+
+  addPayment = (platba) =>{
+    console.log(platba)
   }
   
 
@@ -45,7 +49,7 @@ class App extends Component {
     return <div className="vh-100">
       <div style={{height: '100px'}}>
         <div className="h-100 container-fluid d-flex justify-content-center align-items-center">
-          <a className="text-decoration-none fs-1 text-color-primary fw-semibold"href="#">Dlužníček</a>
+          <a className="text-decoration-none fs-1 text-color-primary fw-semibold" href='#'>Dlužníček</a>
         </div>
       </div>
       <div className="container-fluid" style={{height: '3px', backgroundColor :'#e2e4ed'}}></div>
@@ -67,7 +71,7 @@ class App extends Component {
           </li>
         </ul>
         <div className="tab-content" id="myTabContent">
-          <div className="tab-pane fade show active" id="transakce-tab-pane" role="tabpanel" aria-labelledby="transakce-tab" tabIndex="0"> <Platby people={this.state.people}/> </div>
+          <div className="tab-pane fade show active" id="transakce-tab-pane" role="tabpanel" aria-labelledby="transakce-tab" tabIndex="0"> <Platby people={this.state.people} addPaymentHandler={this.addPayment}/> </div>
           <div className="tab-pane fade" id="dluhy-tab-pane" role="tabpanel" aria-labelledby="dluhy-tab" tabIndex="0"> <Dluhy /> </div>
           <div className="tab-pane fade" id="clenove-tab-pane" role="tabpanel" aria-labelledby="clenove-tab" tabIndex="0"> <Clenove people={this.state.people} addPersonHandler={this.addPerson} /> </div>
         </div>
