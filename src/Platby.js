@@ -140,7 +140,7 @@ class Platby extends Component {
               </div>
 
               <div className="modal-body text-center">
-                <form autoComplete="off" id="platbyForm" onChange={this.formChange}>
+                <form autoComplete="off" id="platbyForm">
 
                   {/*  onChange={this.formChange} */}
 
@@ -170,7 +170,7 @@ class Platby extends Component {
                   </div>
                   
                   {/* disabled={true} */}
-                  <button type="button" className="btn btn-primary" id="ulozitButton" data-bs-dismiss="modal" disabled={true} onClick={this.addPayment}>Uložit</button>
+                  <button type="button" className="btn btn-primary" id="ulozitButton" data-bs-dismiss="modal" onClick={this.addPayment}>Uložit</button>
                 </form>
               </div>
             </div>

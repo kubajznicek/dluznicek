@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import './App.css'
-import Person from './Person'
 import Dluhy from './Dluhy'
 import Clenove from './Clenove'
 import Platby from './Platby'
@@ -25,6 +24,12 @@ class App extends Component {
       people: ppl
     })
   }
+  
+  removePerson = (odstranitJmeno) => {
+    this.setState({people: this.state.people.filter(function(person) { 
+      return person !== odstranitJmeno 
+    })});
+  }
 
   addPayment = (platba) =>{
     console.log(platba)
@@ -44,7 +49,17 @@ class App extends Component {
 
   render() {
     
-    const topPeople = this.state.people.map((name) => <Person key={name} name={name}/>);
+    const topPeople = this.state.people?.map((name) => {
+      return(
+      <div className="card bg-light my-3 ms-3" style={{ width: "13rem" }} key={name}>
+        <img src="images/penizky_malo.png" className="card-img-top img-thumbnail" alt="hromadka penez"/>
+        <div className="card-body bg-primary">
+          <h4 className="text-center text-light text-capitalize">{name}</h4>
+          <p className="card-text text-center text-light">-485 kc</p>
+        </div>
+      </div>
+      )
+    })
     
     return <div className="vh-100">
       <div style={{height: '100px'}}>
@@ -73,7 +88,7 @@ class App extends Component {
         <div className="tab-content" id="myTabContent">
           <div className="tab-pane fade show active" id="transakce-tab-pane" role="tabpanel" aria-labelledby="transakce-tab" tabIndex="0"> <Platby people={this.state.people} addPaymentHandler={this.addPayment}/> </div>
           <div className="tab-pane fade" id="dluhy-tab-pane" role="tabpanel" aria-labelledby="dluhy-tab" tabIndex="0"> <Dluhy /> </div>
-          <div className="tab-pane fade" id="clenove-tab-pane" role="tabpanel" aria-labelledby="clenove-tab" tabIndex="0"> <Clenove people={this.state.people} addPersonHandler={this.addPerson} /> </div>
+          <div className="tab-pane fade" id="clenove-tab-pane" role="tabpanel" aria-labelledby="clenove-tab" tabIndex="0"> <Clenove people={this.state.people} addPersonHandler={this.addPerson} removePersonHandler={this.removePerson} /> </div>
         </div>
       
       <div>{this.state.nakejtext}</div>

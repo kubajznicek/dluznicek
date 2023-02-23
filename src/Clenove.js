@@ -27,6 +27,10 @@ class Clenove extends Component {
     })
   }
 
+  removePerson = (e) => {
+    this.props.removePersonHandler(e.target.parentNode.parentNode.firstChild.lastChild.textContent)
+  }
+
 
 
   render() {
@@ -36,9 +40,12 @@ class Clenove extends Component {
           <li className="list-group-item d-flex justify-content-between align-items-center" key={name}>
             <div className="d-flex align-items-center">
               <img src="images/profile_picture.png" width="40" height="40" alt="profilový obrázek"/>
-              <h5 className="my-0 ms-2" >{name}</h5>
+              <h5 className="my-0 ms-2 text-capitalize" >{name}</h5>
             </div>
-            <span className="badge bg-primary rounded-pill">-104 CZK (kolik dluzi/kolik zaplatil za ostatni a jeste mu nebylo vraceno) </span>
+            <div>
+              <span className="badge bg-primary rounded-pill me-2">-104 CZK (kolik dluzi/kolik zaplatil za ostatni a jeste mu nebylo vraceno) </span>
+              <span className="badge bg-danger rounded-pill" style={{ cursor: "pointer" }} onClick={this.removePerson}>x</span>
+            </div>
           </li>
       )
     });
