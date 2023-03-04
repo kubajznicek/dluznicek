@@ -3,6 +3,7 @@ import './App.css'
 import Dluhy from './Dluhy'
 import Clenove from './Clenove'
 import Platby from './Platby'
+import Person from './Person'
 
 
 class App extends Component {
@@ -12,9 +13,10 @@ class App extends Component {
 
     this.state = {
       nakejtext: "zatim nic",
-      people: ["jarda", "franta"],
+      people: [],
+      EUR: 0,
+      USD: 0
     };
-
   }
 
   addPerson = (novejmeno) => {
@@ -23,16 +25,31 @@ class App extends Component {
     this.setState({
       people: ppl
     })
+    fetch("http://127.0.0.1:8000/people", {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({person: novejmeno})
+    })
   }
   
   removePerson = (odstranitJmeno) => {
     this.setState({people: this.state.people.filter(function(person) { 
       return person !== odstranitJmeno 
     })});
+
+    fetch("http://127.0.0.1:8000/people", {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({person: odstranitJmeno})
+    })
   }
 
-  addPayment = (platba) =>{
-    console.log(platba)
+  addPayment = (payment) => {
+    fetch("http://127.0.0.1:8000/payments", {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payment)
+    })
   }
   
 
@@ -44,24 +61,44 @@ class App extends Component {
           nakejtext: result.title
         })
       })
+
+    fetch('http://127.0.0.1:8000/people')
+      .then((result) => result.json())
+      .then((result) => {
+        let ppl = this.state.people
+        for (let index = 0; index < result.length; index++) {
+          ppl.push(result[index])
+        }
+        this.setState({
+          people: ppl
+        })
+      })
+      
+    // fetch('http://127.0.0.1:8000/currencies')
+    //     .then((result) => result.json())
+    //     .then((result) => {
+    //       this.setState({
+    //         EUR: result.eur,
+    //         USD: result.usd
+    //       })
+    //     })
+  }
+
+  testovaciAPI = () => {
+    fetch("http://127.0.0.1:8000/people", {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({person: "jarda"})
+    })
   }
 
 
   render() {
     
-    const topPeople = this.state.people?.map((name) => {
-      return(
-      <div className="card bg-light my-3 ms-3" style={{ width: "13rem" }} key={name}>
-        <img src="images/penizky_malo.png" className="card-img-top img-thumbnail" alt="hromadka penez"/>
-        <div className="card-body bg-primary">
-          <h4 className="text-center text-light text-capitalize">{name}</h4>
-          <p className="card-text text-center text-light">-485 kc</p>
-        </div>
-      </div>
-      )
-    })
+    const topPeople = this.state.people?.map((name) => <Person key={name} name={name}/>)
     
-    return <div className="vh-100">
+    return (
+    <div className="vh-100">
       <div style={{height: '100px'}}>
         <div className="h-100 container-fluid d-flex justify-content-center align-items-center">
           <a className="text-decoration-none fs-1 text-color-primary fw-semibold" href='#'>Dlužníček</a>
@@ -73,7 +110,6 @@ class App extends Component {
         {topPeople}
       </div>
       
-        {/*text-capitalize*/}
       <ul className="nav nav-tabs nav-justified" style={{backgroundColor : '#e2e4ed'}}>
           <li className="nav-item">
             <button className="nav-link active" id="transakce-tab" data-bs-toggle="tab" data-bs-target="#transakce-tab-pane" type="button" role="tab" aria-controls="transakce-tab-pane" aria-selected="true">Platby</button>
@@ -92,12 +128,14 @@ class App extends Component {
         </div>
       
       <div>{this.state.nakejtext}</div>
+      <button onClick={this.testovaciAPI}>testovaci api tlacitko</button>
 
       <div className="fixed-bottom fs-3 d-flex align-items-center" style={{height: '70px', backgroundColor : '#0011b5'}}>
-        <span className="badge rounded-pill bg-light text-dark ms-3">1 EUR = 24 CZK</span>
-        <span className="badge rounded-pill bg-warning text-dark ms-3">1 USD = 22 CZK</span>
+        <span className="badge rounded-pill bg-light text-dark ms-3">1 EUR = {this.state.EUR} CZK</span>
+        <span className="badge rounded-pill bg-warning text-dark ms-3">1 USD = {this.state.USD} CZK</span>
       </div>
     </div>
+    )
   }
 }
 

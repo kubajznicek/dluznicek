@@ -1,0 +1,18 @@
+{
+    "people": [
+        "ales",
+        "pepa"
+    ],
+    "payments": [
+        {
+            "whoPaid": "jarda",
+            "amount": 450,
+            "purpose": "pokus",
+            "date": "4-3-2023",
+            "whomPaid": [
+                "ales",
+                "pepa"
+            ]
+        }
+    ]
+}

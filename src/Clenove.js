@@ -73,7 +73,7 @@ class Clenove extends Component {
                 <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div className="modal-body text-center">
-                <input type="text" id="novejmeno" className="form-control" placeholder="Nový člen do týmu" onChange={this.nameChange}/>
+                <input type="text" id="novejmeno" className="form-control" placeholder="Nový člen do týmu" autoComplete="off" onChange={this.nameChange}/>
                 <br></br>
                 <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={() => this.addPerson()}>Uložit</button>
               </div>
