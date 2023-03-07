@@ -53,7 +53,7 @@ class Platby extends Component {
 
       document.querySelectorAll('[id=whomPaid]').forEach(element => {
         if (Number(element.lastChild.value) !== 0) {
-          whomPaid.push(element.firstChild.textContent)
+          whomPaid.push([element.firstChild.textContent, element.lastChild.value.replaceAll("-", "")])
         }
       })
 
@@ -87,7 +87,7 @@ class Platby extends Component {
   render() {
 
     const platbyRender = this.state.platby.map(function(platby, idx) {
-      return ([
+      return (
         <li className="list-group-item d-flex justify-content-between align-items-center" key={idx}>
           <div className="d-flex flex-column">
             <div className="d-flex align-items-baseline">
@@ -101,10 +101,12 @@ class Platby extends Component {
           </div>
           <div className="text-end">
             <span className="badge bg-primary rounded-pill">{platby.amount} CZK</span>
-            <h5 className="text-capitalize mt-4">{platby.whomPaid + ""}</h5>
+            <div className="d-flex">
+            {platby.whomPaid.map((name, index) => <h5 className="text-capitalize mt-4 mx-1" key={index}>{name[0]}</h5>)}
+            </div>
           </div>
         </li>
-      ]);
+      );
     });
 
     const whomPaidPeople = this.props.people?.map((name) => {

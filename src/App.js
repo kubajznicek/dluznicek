@@ -14,11 +14,54 @@ class App extends Component {
     this.state = {
       nakejtext: "zatim nic",
       people: [],
+      isowed: {},
+      ows: {},
       EUR: 0,
       USD: 0
     };
   }
 
+  
+  componentDidMount() {
+    fetch('https://jsonplaceholder.typicode.com/todos/1')
+      .then((result) => result.json())
+      .then((result) => {
+        this.setState({
+          nakejtext: result.title
+        })
+      })
+
+    fetch('http://127.0.0.1:8000/people')
+    .then((result) => result.json())
+      .then((result) => {
+        let ppl = this.state.people
+        for (let index = 0; index < result.length; index++) {
+          ppl.push(result[index])
+        }
+        this.setState({
+          people: ppl
+        })
+      })
+
+    fetch('http://127.0.0.1:8000/debts')
+      .then((result) => result.json())
+      .then((result) => {
+        this.setState({
+          isowed: result.isowed,
+          ows: result.ows
+        })
+      })
+      
+    // fetch('http://127.0.0.1:8000/currencies')
+    //     .then((result) => result.json())
+    //     .then((result) => {
+    //       this.setState({
+    //         EUR: result.eur,
+    //         USD: result.usd
+    //       })
+    //     })
+  }
+  
   addPerson = (novejmeno) => {
     let ppl = this.state.people
     ppl.push(novejmeno)
@@ -31,7 +74,7 @@ class App extends Component {
       body: JSON.stringify({person: novejmeno})
     })
   }
-  
+
   removePerson = (odstranitJmeno) => {
     this.setState({people: this.state.people.filter(function(person) { 
       return person !== odstranitJmeno 
@@ -50,52 +93,30 @@ class App extends Component {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payment)
     })
+      .then((result) => result.json())
+      .then((result) => {
+        this.setState({
+          isowed: result.isowed,
+          ows: result.ows
+        })
+      })
   }
   
 
-  componentDidMount() {
-    fetch('https://jsonplaceholder.typicode.com/todos/1')
-      .then((result) => result.json())
-      .then((result) => {
-        this.setState({
-          nakejtext: result.title
-        })
-      })
-
-    fetch('http://127.0.0.1:8000/people')
-      .then((result) => result.json())
-      .then((result) => {
-        let ppl = this.state.people
-        for (let index = 0; index < result.length; index++) {
-          ppl.push(result[index])
-        }
-        this.setState({
-          people: ppl
-        })
-      })
-      
-    // fetch('http://127.0.0.1:8000/currencies')
-    //     .then((result) => result.json())
-    //     .then((result) => {
-    //       this.setState({
-    //         EUR: result.eur,
-    //         USD: result.usd
-    //       })
-    //     })
-  }
 
   testovaciAPI = () => {
-    fetch("http://127.0.0.1:8000/people", {
-      method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({person: "jarda"})
-    })
+    // fetch("http://127.0.0.1:8000/people", {
+    //   method: 'DELETE',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify({person: "jarda"})
+    // })
+    console.log(this.state.isowed.jarda)
   }
 
 
   render() {
     
-    const topPeople = this.state.people?.map((name) => <Person key={name} name={name}/>)
+    const topPeople = this.state.people?.map((name) => <Person key={name} name={name} isowed={this.state.isowed[name]} ows={this.state.ows[name]}/>)
     
     return (
     <div className="vh-100">
@@ -129,6 +150,8 @@ class App extends Component {
       
       <div>{this.state.nakejtext}</div>
       <button onClick={this.testovaciAPI}>testovaci api tlacitko</button>
+      
+      <div style={{height: '120px'}}></div>
 
       <div className="fixed-bottom fs-3 d-flex align-items-center" style={{height: '70px', backgroundColor : '#0011b5'}}>
         <span className="badge rounded-pill bg-light text-dark ms-3">1 EUR = {this.state.EUR} CZK</span>

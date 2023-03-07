@@ -1,18 +1,128 @@
 {
     "people": [
-        "ales",
-        "pepa"
+        "pepa",
+        "franta",
+        "marie"
     ],
     "payments": [
         {
-            "whoPaid": "jarda",
-            "amount": 450,
-            "purpose": "pokus",
-            "date": "4-3-2023",
+            "whoPaid": "pepa",
+            "amount": 150,
+            "purpose": "q",
+            "date": "7-3-2023",
             "whomPaid": [
-                "ales",
-                "pepa"
+                [
+                    "franta",
+                    "150"
+                ]
+            ]
+        },
+        {
+            "whoPaid": "pepa",
+            "amount": 250,
+            "purpose": "w",
+            "date": "7-3-2023",
+            "whomPaid": [
+                [
+                    "franta",
+                    "250"
+                ]
+            ]
+        },
+        {
+            "whoPaid": "franta",
+            "amount": 200,
+            "purpose": "e",
+            "date": "7-3-2023",
+            "whomPaid": [
+                [
+                    "pepa",
+                    "200"
+                ]
+            ]
+        },
+        {
+            "whoPaid": "franta",
+            "amount": 500,
+            "purpose": "r",
+            "date": "7-3-2023",
+            "whomPaid": [
+                [
+                    "pepa",
+                    "500"
+                ]
+            ]
+        },
+        {
+            "whoPaid": "pepa",
+            "amount": 500,
+            "purpose": "t",
+            "date": "7-3-2023",
+            "whomPaid": [
+                [
+                    "franta",
+                    "500"
+                ]
+            ]
+        },
+        {
+            "whoPaid": "pepa",
+            "amount": 150,
+            "purpose": "y",
+            "date": "7-3-2023",
+            "whomPaid": [
+                [
+                    "marie",
+                    "150"
+                ]
+            ]
+        },
+        {
+            "whoPaid": "marie",
+            "amount": 200,
+            "purpose": "1",
+            "date": "7-3-2023",
+            "whomPaid": [
+                [
+                    "franta",
+                    "200"
+                ]
+            ]
+        },
+        {
+            "whoPaid": "franta",
+            "amount": 400,
+            "purpose": "2",
+            "date": "7-3-2023",
+            "whomPaid": [
+                [
+                    "pepa",
+                    "400"
+                ]
+            ]
+        },
+        {
+            "whoPaid": "pepa",
+            "amount": 50,
+            "purpose": "3",
+            "date": "7-3-2023",
+            "whomPaid": [
+                [
+                    "marie",
+                    "50"
+                ]
             ]
         }
-    ]
+    ],
+    "debts": [],
+    "isowed": {
+        "pepa": 0,
+        "franta": 0,
+        "marie": 0
+    },
+    "ows": {
+        "pepa": 0,
+        "franta": 0,
+        "marie": 0
+    }
 }

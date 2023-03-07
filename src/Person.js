@@ -5,25 +5,42 @@ class Person extends Component {
     super(props);
 
     this.state = {
-      dluzi: 50,
+
     };
   }
 
+
+  displayNumber() {
+    if (this.props.isowed === undefined) {
+      return 0
+    }
+    if (this.props.isowed > this.props.ows) {
+      return this.props.isowed
+    }
+    if (this.props.isowed === 0 && this.props.ows === 0) {
+      return 0
+    }
+    else{
+      return "- "+this.props.ows
+    }
+  };
+
+
   penizkyImage() {
-    if (this.state.dluzi === 0) {
-
+    if (this.props.isowed === 0) {
+      return
     }
 
-    if (this.state.dluzi < 300) {
-        return <img src="images/penizky_malo.png" width="85" height="98" alt="mala hromadka penez"/>
+    if (this.props.isowed <= 300) {
+      return <img src="images/penizky_malo.png" width="85" height="98" alt="mala hromadka penez"/>
     }
 
-    if (this.state.dluzi > 300, this.state.dluzi < 500) {
-        return <img src="images/penizky_stredne.png" width="186" height="194" alt="stredni hromadka penez"/>
+    if (this.props.isowed > 300 &&this.props.isowed < 500) {
+      return <img src="images/penizky_stredne.png" width="186" height="194" alt="stredni hromadka penez"/>
     }
 
-    if (this.state.dluzi > 500) {
-        return <img src="images/penizky_hodne.png" width="257" height="195" alt="velka hromadka penez"/>
+    if (this.props.isowed >= 500) {
+      return <img src="images/penizky_hodne.png" width="257" height="195" alt="velka hromadka penez"/>
     }
   }
 
@@ -36,7 +53,7 @@ class Person extends Component {
         </div>
           <div className="card-body bg-primary">
             <h4 className="text-center text-light text-capitalize">{this.props.name}</h4>
-            <p className="card-text text-center text-light">-485 kc</p>
+            <p className="card-text text-center text-light">{this.displayNumber()} kc</p>
           </div>
         </div>
       </div>

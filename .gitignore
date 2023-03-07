@@ -9,6 +9,7 @@
 # testing
 /coverage
 /python/__pycache__
+/python/Constants.py
 
 # production
 /build
