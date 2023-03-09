@@ -12,10 +12,10 @@ class App extends Component {
     super(props);
 
     this.state = {
-      nakejtext: "zatim nic",
       people: [],
       isowed: {},
       ows: {},
+      debts: [],
       EUR: 0,
       USD: 0
     };
@@ -23,14 +23,6 @@ class App extends Component {
 
   
   componentDidMount() {
-    fetch('https://jsonplaceholder.typicode.com/todos/1')
-      .then((result) => result.json())
-      .then((result) => {
-        this.setState({
-          nakejtext: result.title
-        })
-      })
-
     fetch('http://127.0.0.1:8000/people')
     .then((result) => result.json())
       .then((result) => {
@@ -48,18 +40,19 @@ class App extends Component {
       .then((result) => {
         this.setState({
           isowed: result.isowed,
-          ows: result.ows
+          ows: result.ows,
+          debts: result.debts
         })
       })
       
-    // fetch('http://127.0.0.1:8000/currencies')
-    //     .then((result) => result.json())
-    //     .then((result) => {
-    //       this.setState({
-    //         EUR: result.eur,
-    //         USD: result.usd
-    //       })
-    //     })
+    fetch('http://127.0.0.1:8000/currencies')
+        .then((result) => result.json())
+        .then((result) => {
+          this.setState({
+            EUR: result.eur,
+            USD: result.usd
+          })
+        })
   }
   
   addPerson = (novejmeno) => {
@@ -97,22 +90,23 @@ class App extends Component {
       .then((result) => {
         this.setState({
           isowed: result.isowed,
-          ows: result.ows
+          ows: result.ows,
+          debts: result.debts
         })
       })
   }
-  
 
-
-  testovaciAPI = () => {
-    // fetch("http://127.0.0.1:8000/people", {
-    //   method: 'DELETE',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify({person: "jarda"})
-    // })
-    console.log(this.state.isowed.jarda)
+  removeDebts = () => {
+    this.setState({
+      debts: [],
+      isowed: {},
+      ows: {}
+    })
+    fetch("http://127.0.0.1:8000/debts", {
+      method: 'DELETE'
+    })
   }
-
+  
 
   render() {
     
@@ -144,16 +138,13 @@ class App extends Component {
         </ul>
         <div className="tab-content" id="myTabContent">
           <div className="tab-pane fade show active" id="transakce-tab-pane" role="tabpanel" aria-labelledby="transakce-tab" tabIndex="0"> <Platby people={this.state.people} addPaymentHandler={this.addPayment}/> </div>
-          <div className="tab-pane fade" id="dluhy-tab-pane" role="tabpanel" aria-labelledby="dluhy-tab" tabIndex="0"> <Dluhy /> </div>
+          <div className="tab-pane fade" id="dluhy-tab-pane" role="tabpanel" aria-labelledby="dluhy-tab" tabIndex="0"> <Dluhy debts={this.state.debts} debtsHandler={this.removeDebts}/> </div>
           <div className="tab-pane fade" id="clenove-tab-pane" role="tabpanel" aria-labelledby="clenove-tab" tabIndex="0"> <Clenove people={this.state.people} addPersonHandler={this.addPerson} removePersonHandler={this.removePerson} /> </div>
         </div>
-      
-      <div>{this.state.nakejtext}</div>
-      <button onClick={this.testovaciAPI}>testovaci api tlacitko</button>
-      
+
       <div style={{height: '120px'}}></div>
 
-      <div className="fixed-bottom fs-3 d-flex align-items-center" style={{height: '70px', backgroundColor : '#0011b5'}}>
+      <div className="fixed-bottom fs-3 d-flex align-items-center bg-primary" style={{height: '70px'}}>
         <span className="badge rounded-pill bg-light text-dark ms-3">1 EUR = {this.state.EUR} CZK</span>
         <span className="badge rounded-pill bg-warning text-dark ms-3">1 USD = {this.state.USD} CZK</span>
       </div>

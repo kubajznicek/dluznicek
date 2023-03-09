@@ -27,7 +27,6 @@ class Person(BaseModel):
     person: str
 
 def debts():
-    print("in function debts")
     with open('data.json', 'r') as f:
         file_data = json.load(f)
 
@@ -40,6 +39,31 @@ def debts():
                 no_debt_now = file_data["ows"][person] - still_ows
                 file_data["ows"][person] -= no_debt_now
                 file_data["isowed"][person] -= no_debt_now
+
+    ows = sorted(file_data["ows"].items(), key=lambda x:x[1], reverse=True)
+    isowed = sorted(file_data["isowed"].items(), key=lambda x:x[1], reverse=True)
+    ows = dict((x, y) for x, y in ows)
+    isowed = dict((x, y) for x, y in isowed)
+
+
+    debts = []
+    for person in ows:
+        if ows[person] > 0:
+            for j in isowed:
+                if isowed[j] > 0:
+                    if ows[person] > isowed[j]:
+                        debts.append({"who": person, "whom": j, "amount": isowed[j]})
+                        ows[person] -= isowed[j]
+                        isowed[j] -= isowed[j]
+                        if ows[person] == 0:
+                            break
+                    else:   # ows je mensi ne isowed -> cely ows se da do isowed
+                        debts.append({"who": person, "whom": j, "amount": ows[person]})
+                        isowed[j] -= ows[person]
+                        break
+
+    file_data["debts"] = debts
+
 
     with open('data.json', 'w') as f:
         json.dump(file_data, f, indent = 4)
@@ -62,7 +86,7 @@ def ows(whoPaid, whomPaid):
         json.dump(file_data, f, indent = 4)
 
 @app.get("/")
-async def pokus():
+async def getRoot():
     return {"message": "Hello World"}
 
 @app.get("/currencies")
@@ -100,7 +124,7 @@ async def newPayment(payment: Payment ):
     debts()
     with open('data.json', 'r') as f:
         file_data = json.load(f)
-    response = {'isowed': file_data["isowed"], 'ows':  file_data["ows"]}
+    response = {'isowed': file_data["isowed"], 'ows':  file_data["ows"], 'debts': file_data["debts"]}
 
     return response
 
@@ -112,9 +136,25 @@ async def getDebts():
     debts()
     with open('data.json', 'r') as f:
         file_data = json.load(f)
-    response = {'isowed': file_data["isowed"], 'ows':  file_data["ows"]}
+    response = {'isowed': file_data["isowed"], 'ows':  file_data["ows"], 'debts': file_data["debts"]}
 
     return response
+
+@app.delete("/debts")
+async def removeDebts():
+    with open('data.json', 'r') as f:
+        file_data = json.load(f)
+
+    file_data["debts"] = []
+    for i in file_data["ows"]:
+        file_data["ows"][i] = 0
+
+    for i in file_data["isowed"]:
+        file_data["isowed"][i] = 0
+    
+    with open('data.json', 'w') as f:
+        json.dump(file_data, f, indent = 4)
+
 
 @app.get("/people")
 async def getPeople():
