@@ -1,15 +1,18 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Response
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 import requests
 from pydantic import BaseModel
 import json
+import os
 import Constants
 
-
+root = os.path.dirname(os.path.abspath(__file__))
 currenciesURL = Constants.currenciesURL
 app = FastAPI()
-
-origins = ["http://localhost:3000"]
+app.mount("/static", StaticFiles(directory="./../build/static"), name="static")
+app.mount("/images", StaticFiles(directory="./../build/images"), name="images")
+origins = ["http://localhost:3000", "http://0.0.0.0:8000"]
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
@@ -87,7 +90,10 @@ def ows(whoPaid, whomPaid):
 
 @app.get("/")
 async def getRoot():
-    return {"message": "Hello World"}
+    print(root)
+    with open(os.path.join(root+"/../build", 'index.html')) as fh:
+        data = fh.read()
+    return Response(content=data, media_type="text/html")
 
 @app.get("/currencies")
 async def getValue():

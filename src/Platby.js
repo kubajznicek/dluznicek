@@ -7,31 +7,7 @@ class Platby extends Component {
 
     this.state = {
       suma_display: 0,
-      platby: [
-        // {
-          // whoPaid: "",
-          // amount: 0,
-          // purpose: "",
-          // date: new Date().toLocaleString().slice(0, 9).replaceAll("/","-"),
-          // whomPaid:[]
-        // }
-      ],
-
     };
-  }
-
-  componentDidMount () {
-    fetch('http://127.0.0.1:8000/payments')
-      .then((result) => result.json())
-      .then((result) => {
-        let payments = this.state.platby
-        for (let index = 0; index < result.length; index++) {
-          payments.push(result[index])
-        }
-        this.setState({
-          platby: payments
-        })
-      })
   }
   
   addPayment = (e) => {
@@ -59,10 +35,9 @@ class Platby extends Component {
 
       let platby = {whoPaid: document.getElementById("sel1").value, amount: this.state.suma_display, purpose: document.getElementById("purpose").value, date: date, whomPaid: whomPaid}
 
-      this.setState(prevState => ({
-        platby: [...prevState.platby, platby],
+      this.setState({
         suma_display: 0
-      }))
+      })
 
       document.getElementById("platbyForm").reset()
       this.closeButton.click()
@@ -86,7 +61,7 @@ class Platby extends Component {
 
   render() {
 
-    const platbyRender = this.state.platby.map(function(platby, idx) {
+    const platbyRender = this.props.platby.map(function(platby, idx) {
       return (
         <li className="list-group-item d-flex justify-content-between align-items-center" key={idx}>
           <div className="d-flex flex-column">

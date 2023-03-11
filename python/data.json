@@ -1,7 +1,51 @@
 {
-    "people": [],
-    "payments": [],
-    "debts": [],
-    "isowed": {},
-    "ows": {}
+    "people": [
+        "jarda",
+        "pepa"
+    ],
+    "payments": [
+        {
+            "whoPaid": "jarda",
+            "amount": 150,
+            "purpose": "dw",
+            "date": "11-3-2023",
+            "whomPaid": [
+                [
+                    "pepa",
+                    "150"
+                ]
+            ]
+        },
+        {
+            "whoPaid": "jarda",
+            "amount": 2040,
+            "purpose": "refw",
+            "date": "11-3-2023",
+            "whomPaid": [
+                [
+                    "jarda",
+                    "20"
+                ],
+                [
+                    "pepa",
+                    "2020"
+                ]
+            ]
+        }
+    ],
+    "debts": [
+        {
+            "who": "pepa",
+            "whom": "jarda",
+            "amount": 2170
+        }
+    ],
+    "isowed": {
+        "jarda": 2170,
+        "pepa": 0
+    },
+    "ows": {
+        "jarda": 0,
+        "pepa": 2170
+    }
 }

@@ -5,6 +5,8 @@ import Clenove from './Clenove'
 import Platby from './Platby'
 import Person from './Person'
 
+let BASE_URL = "http://127.0.0.1:8000"
+// let BASE_URL = ""
 
 class App extends Component {
 
@@ -13,6 +15,7 @@ class App extends Component {
 
     this.state = {
       people: [],
+      platby: [],
       isowed: {},
       ows: {},
       debts: [],
@@ -21,10 +24,11 @@ class App extends Component {
     };
   }
 
-  
+
+
   componentDidMount() {
-    fetch('http://127.0.0.1:8000/people')
-    .then((result) => result.json())
+    fetch(BASE_URL + '/people')
+      .then((result) => result.json())
       .then((result) => {
         let ppl = this.state.people
         for (let index = 0; index < result.length; index++) {
@@ -35,7 +39,19 @@ class App extends Component {
         })
       })
 
-    fetch('http://127.0.0.1:8000/debts')
+    fetch(BASE_URL + '/payments')
+      .then((result) => result.json())
+      .then((result) => {
+        let payments = []
+        for (let index = 0; index < result.length; index++) {
+          payments.push(result[index])
+        }
+        this.setState({
+          platby: payments
+        })
+      })
+
+    fetch(BASE_URL + '/debts')
       .then((result) => result.json())
       .then((result) => {
         this.setState({
@@ -45,7 +61,7 @@ class App extends Component {
         })
       })
       
-    fetch('http://127.0.0.1:8000/currencies')
+    fetch(BASE_URL + '/currencies')
         .then((result) => result.json())
         .then((result) => {
           this.setState({
@@ -61,7 +77,7 @@ class App extends Component {
     this.setState({
       people: ppl
     })
-    fetch("http://127.0.0.1:8000/people", {
+    fetch(BASE_URL + "/people", {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({person: novejmeno})
@@ -73,7 +89,7 @@ class App extends Component {
       return person !== odstranitJmeno 
     })});
 
-    fetch("http://127.0.0.1:8000/people", {
+    fetch(BASE_URL + "/people", {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({person: odstranitJmeno})
@@ -81,7 +97,10 @@ class App extends Component {
   }
 
   addPayment = (payment) => {
-    fetch("http://127.0.0.1:8000/payments", {
+    this.setState(prevState => ({
+      platby: [...prevState.platby, payment]
+    }))
+    fetch(BASE_URL + "/payments", {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payment)
@@ -102,7 +121,7 @@ class App extends Component {
       isowed: {},
       ows: {}
     })
-    fetch("http://127.0.0.1:8000/debts", {
+    fetch(BASE_URL + "/debts", {
       method: 'DELETE'
     })
   }
@@ -137,7 +156,7 @@ class App extends Component {
           </li>
         </ul>
         <div className="tab-content" id="myTabContent">
-          <div className="tab-pane fade show active" id="transakce-tab-pane" role="tabpanel" aria-labelledby="transakce-tab" tabIndex="0"> <Platby people={this.state.people} addPaymentHandler={this.addPayment}/> </div>
+          <div className="tab-pane fade show active" id="transakce-tab-pane" role="tabpanel" aria-labelledby="transakce-tab" tabIndex="0"> <Platby people={this.state.people} platby={this.state.platby} addPaymentHandler={this.addPayment}/> </div>
           <div className="tab-pane fade" id="dluhy-tab-pane" role="tabpanel" aria-labelledby="dluhy-tab" tabIndex="0"> <Dluhy debts={this.state.debts} debtsHandler={this.removeDebts}/> </div>
           <div className="tab-pane fade" id="clenove-tab-pane" role="tabpanel" aria-labelledby="clenove-tab" tabIndex="0"> <Clenove people={this.state.people} addPersonHandler={this.addPerson} removePersonHandler={this.removePerson} /> </div>
         </div>
