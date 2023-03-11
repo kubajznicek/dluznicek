@@ -14,7 +14,5 @@ https://www.pngitem.com/pimgs/m/150-1503945_transparent-user-png-default-user-im
 sipka
 https://cdn-icons-png.flaticon.com/512/3916/3916837.png
 
-dropdown
-https://static.thenounproject.com/png/551749-200.png
-
-https://app.freecurrencyapi.com/dashboard
+currencies API
+https://app.freecurrencyapi.com/
