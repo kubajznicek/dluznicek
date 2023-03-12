@@ -169,9 +169,9 @@ class App extends Component {
           <span className="badge rounded-pill bg-warning text-dark ms-3">1 USD = {this.state.USD} CZK</span>
         </div>
         <div>
-          <a href='https://github.com/kubajznicek/dluznicek' target="_blank" className='text-decoration-none d-flex align-item-center'>
-            <img src="images/github.png" width="40" height="40" alt="github"/>
-            <span className='ms-2 me-3 text-dark'>Kubajznicek</span>
+          <a href='https://github.com/kubajznicek/dluznicek' target="_blank" rel="noreferrer" className='text-decoration-none d-flex align-item-center'>
+            <img src="images/github.png" width="25" height="25" alt="github"/>
+            <span className='ms-2 me-3 text-dark fs-5 mb-0'>Kubajznicek</span>
             </a>
         </div>
       </div>
