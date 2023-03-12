@@ -28,10 +28,28 @@ class Clenove extends Component {
   }
 
   removePerson = (e) => {
-    this.props.removePersonHandler(e.target.parentNode.parentNode.firstChild.lastChild.textContent)
+    if ( e.target.parentNode.firstChild.textContent === "0 kč") {
+      this.props.removePersonHandler(e.target.parentNode.parentNode.firstChild.lastChild.textContent)
+    }
+    else{
+      alert("tento celen ma nesplaceny dluh")
+    }
   }
 
-
+  displayNumber (name) {
+    if (this.props.isowed[name] === undefined) {
+      return 0
+    }
+    if (this.props.isowed[name] > this.props.ows[name]) {
+      return this.props.isowed[name]
+    }
+    if (this.props.isowed[name] === 0 && this.props.ows[name] === 0) {
+      return 0
+    }
+    else{
+      return "- "+this.props.ows[name]
+    }
+  };
 
   render() {
 
@@ -43,7 +61,7 @@ class Clenove extends Component {
               <h5 className="my-0 ms-2 text-capitalize" >{name}</h5>
             </div>
             <div>
-              <span className="badge bg-primary rounded-pill me-2">-104 CZK (kolik dluzi/kolik zaplatil za ostatni a jeste mu nebylo vraceno) </span>
+              <span className="badge bg-primary rounded-pill me-2">{this.displayNumber(name)} kč</span>
               <span className="badge bg-danger rounded-pill" style={{ cursor: "pointer" }} onClick={this.removePerson}>x</span>
             </div>
           </li>
@@ -53,16 +71,20 @@ class Clenove extends Component {
     return (
       <div>
         <br></br>
-        <ul className="list-group d-grid col-6 mx-auto">
-          {clenove}
-        </ul>
-        <br></br>
 
         <div className="d-grid col-3 mx-auto">
           <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#PridatClenaOkno" onClick={() => this.resetInput()}>
             Přidat člena
           </button>
         </div>
+
+        <br></br>
+
+        <ul className="list-group d-grid col-6 mx-auto">
+          {clenove}
+        </ul>
+        <br></br>
+
 
 
         <div className="modal fade" id="PridatClenaOkno" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

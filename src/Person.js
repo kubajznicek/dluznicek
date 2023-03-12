@@ -27,20 +27,39 @@ class Person extends Component {
 
 
   penizkyImage() {
-    if (this.props.isowed === 0) {
-      return
+
+    if ( this.props.ows === 0 && this.props.isowed === 0 || this.props.ows === undefined) {
+      return <img src="images/penizky_malo_nula.png" width="85" height="98" alt="mala hromadka penez"/>
     }
 
-    if (this.props.isowed <= 300) {
-      return <img src="images/penizky_malo.png" width="85" height="98" alt="mala hromadka penez"/>
+    if (this.props.ows === 0) { 
+
+      if (this.props.isowed <= 300) {
+        return <img src="images/penizky_malo.png" width="85" height="98" alt="mala hromadka penez"/>
+      }
+
+      if (this.props.isowed > 300 && this.props.isowed < 500) {
+        return <img src="images/penizky_stredne.png" width="186" height="194" alt="stredni hromadka penez"/>
+      }
+
+      if (this.props.isowed >= 500) {
+        return <img src="images/penizky_hodne.png" width="257" height="195" alt="velka hromadka penez"/>
+      }
     }
 
-    if (this.props.isowed > 300 &&this.props.isowed < 500) {
-      return <img src="images/penizky_stredne.png" width="186" height="194" alt="stredni hromadka penez"/>
-    }
+    if (this.props.isowed === 0 ) {
 
-    if (this.props.isowed >= 500) {
-      return <img src="images/penizky_hodne.png" width="257" height="195" alt="velka hromadka penez"/>
+      if (this.props.ows <= 300) {
+          return <img src="images/penizky_malo_cerveny.png" width="85" height="98" alt="mala hromadka penez"/>
+      }
+
+      if (this.props.ows > 300 && this.props.ows < 500) {
+        return <img src="images/penizky_stredne_cerveny.png" width="186" height="194" alt="stredni hromadka penez"/>
+      }
+
+      if (this.props.ows >= 500) {
+        return <img src="images/penizky_hodne_cerveny.png" width="257" height="195" alt="velka hromadka penez"/>
+      }
     }
   }
 
@@ -53,7 +72,7 @@ class Person extends Component {
         </div>
           <div className="card-body bg-primary">
             <h4 className="text-center text-light text-capitalize">{this.props.name}</h4>
-            <p className="card-text text-center text-light">{this.displayNumber()} kc</p>
+            <p className="card-text text-center text-light">{this.displayNumber()} kč</p>
           </div>
         </div>
       </div>

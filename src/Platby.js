@@ -106,18 +106,21 @@ class Platby extends Component {
       <div>
         <br></br>
 
-        <ul className="list-group d-grid col-6 mx-auto">
-          {platbyRender}
-        </ul>
-
-        <br></br>
-
-        
         <div className="d-grid col-3 mx-auto">
           <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#PridatPlatbuOkno">
             Přidat platbu
           </button>
         </div>
+
+        <br></br>
+
+        <ul className="list-group d-grid col-6 mx-auto">
+          {platbyRender.reverse()}
+        </ul>
+
+        <br></br>
+
+        
 
 
         <div className="modal fade" id="PridatPlatbuOkno" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

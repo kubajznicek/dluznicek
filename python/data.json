@@ -1,34 +1,119 @@
 {
     "people": [
-        "jarda",
-        "pepa"
+        "pepa",
+        "ales",
+        "franta"
     ],
     "payments": [
         {
             "whoPaid": "jarda",
-            "amount": 150,
-            "purpose": "dw",
-            "date": "11-3-2023",
+            "amount": 200,
+            "purpose": "f4",
+            "date": "12-3-2023",
             "whomPaid": [
                 [
                     "pepa",
+                    "50"
+                ],
+                [
+                    "ales",
                     "150"
                 ]
             ]
         },
         {
             "whoPaid": "jarda",
-            "amount": 2040,
-            "purpose": "refw",
-            "date": "11-3-2023",
+            "amount": 400,
+            "purpose": "fewf",
+            "date": "12-3-2023",
+            "whomPaid": [
+                [
+                    "pepa",
+                    "200"
+                ],
+                [
+                    "ales",
+                    "200"
+                ]
+            ]
+        },
+        {
+            "whoPaid": "ales",
+            "amount": 850,
+            "purpose": "rrr",
+            "date": "12-3-2023",
             "whomPaid": [
                 [
                     "jarda",
-                    "20"
+                    "350"
                 ],
                 [
                     "pepa",
-                    "2020"
+                    "500"
+                ]
+            ]
+        },
+        {
+            "whoPaid": "pepa",
+            "amount": 5,
+            "purpose": "3",
+            "date": "12-3-2023",
+            "whomPaid": [
+                [
+                    "ales",
+                    "5"
+                ]
+            ]
+        },
+        {
+            "whoPaid": "pepa",
+            "amount": 12,
+            "purpose": "23",
+            "date": "12-3-2023",
+            "whomPaid": [
+                [
+                    "pepa",
+                    "4"
+                ],
+                [
+                    "ales",
+                    "4"
+                ],
+                [
+                    "franta",
+                    "4"
+                ]
+            ]
+        },
+        {
+            "whoPaid": "pepa",
+            "amount": 12,
+            "purpose": "ecx",
+            "date": "12-3-2023",
+            "whomPaid": [
+                [
+                    "pepa",
+                    "4"
+                ],
+                [
+                    "ales",
+                    "4"
+                ],
+                [
+                    "franta",
+                    "4"
+                ]
+            ]
+        },
+        {
+            "whoPaid": "ales",
+            "amount": 2134532,
+            "purpose": "323",
+            "date": "12-3-2023",
+            "whomPaid": [
+                [
+                    "pepa",
+                    "2134532"
                 ]
             ]
         }
@@ -36,16 +121,23 @@
     "debts": [
         {
             "who": "pepa",
-            "whom": "jarda",
-            "amount": 2170
+            "whom": "ales",
+            "amount": 2134511
+        },
+        {
+            "who": "franta",
+            "whom": "ales",
+            "amount": 8
         }
     ],
     "isowed": {
-        "jarda": 2170,
-        "pepa": 0
+        "pepa": 0,
+        "ales": 2134519,
+        "franta": 0
     },
     "ows": {
-        "jarda": 0,
-        "pepa": 2170
+        "pepa": 2134511,
+        "ales": 0,
+        "franta": 8
     }
 }

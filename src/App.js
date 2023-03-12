@@ -61,14 +61,14 @@ class App extends Component {
         })
       })
       
-    fetch(BASE_URL + '/currencies')
-        .then((result) => result.json())
-        .then((result) => {
-          this.setState({
-            EUR: result.eur,
-            USD: result.usd
-          })
-        })
+    // fetch(BASE_URL + '/currencies')
+    //     .then((result) => result.json())
+    //     .then((result) => {
+    //       this.setState({
+    //         EUR: result.eur,
+    //         USD: result.usd
+    //       })
+    //     })
   }
   
   addPerson = (novejmeno) => {
@@ -140,7 +140,7 @@ class App extends Component {
       </div>
       <div className="container-fluid" style={{height: '3px', backgroundColor :'#e2e4ed'}}></div>
 
-      <div className="container-fluid d-flex flex-wrap justify-content-center align-items-center" style={{minHeight: '25%',backgroundColor : '#ffffff'}}>
+      <div className="container-fluid d-flex flex-wrap justify-content-center align-items-center" style={{minHeight: '35%',backgroundColor : '#ffffff'}}>
         {topPeople}
       </div>
       
@@ -158,14 +158,22 @@ class App extends Component {
         <div className="tab-content" id="myTabContent">
           <div className="tab-pane fade show active" id="transakce-tab-pane" role="tabpanel" aria-labelledby="transakce-tab" tabIndex="0"> <Platby people={this.state.people} platby={this.state.platby} addPaymentHandler={this.addPayment}/> </div>
           <div className="tab-pane fade" id="dluhy-tab-pane" role="tabpanel" aria-labelledby="dluhy-tab" tabIndex="0"> <Dluhy debts={this.state.debts} debtsHandler={this.removeDebts}/> </div>
-          <div className="tab-pane fade" id="clenove-tab-pane" role="tabpanel" aria-labelledby="clenove-tab" tabIndex="0"> <Clenove people={this.state.people} addPersonHandler={this.addPerson} removePersonHandler={this.removePerson} /> </div>
+          <div className="tab-pane fade" id="clenove-tab-pane" role="tabpanel" aria-labelledby="clenove-tab" tabIndex="0"> <Clenove people={this.state.people} addPersonHandler={this.addPerson} removePersonHandler={this.removePerson} isowed={this.state.isowed} ows={this.state.ows}/> </div>
         </div>
 
       <div style={{height: '120px'}}></div>
 
-      <div className="fixed-bottom fs-3 d-flex align-items-center bg-primary" style={{height: '70px'}}>
-        <span className="badge rounded-pill bg-light text-dark ms-3">1 EUR = {this.state.EUR} CZK</span>
-        <span className="badge rounded-pill bg-warning text-dark ms-3">1 USD = {this.state.USD} CZK</span>
+      <div className="fixed-bottom fs-3 d-flex align-items-center bg-primary justify-content-between" style={{height: '70px'}}>
+        <div>
+          <span className="badge rounded-pill bg-light text-dark ms-3">1 EUR = {this.state.EUR} CZK</span>
+          <span className="badge rounded-pill bg-warning text-dark ms-3">1 USD = {this.state.USD} CZK</span>
+        </div>
+        <div>
+          <a href='https://github.com/kubajznicek/dluznicek' target="_blank" className='text-decoration-none d-flex align-item-center'>
+            <img src="images/github.png" width="40" height="40" alt="github"/>
+            <span className='ms-2 me-3 text-dark'>Kubajznicek</span>
+            </a>
+        </div>
       </div>
     </div>
     )
