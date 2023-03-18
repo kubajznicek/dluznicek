@@ -90,7 +90,6 @@ def ows(whoPaid, whomPaid):
 
 @app.get("/")
 async def getRoot():
-    print(root)
     with open(os.path.join(root+"/../build", 'index.html')) as fh:
         data = fh.read()
     return Response(content=data, media_type="text/html")
