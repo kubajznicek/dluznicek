@@ -5,8 +5,8 @@ import Clenove from './Clenove'
 import Platby from './Platby'
 import Person from './Person'
 
-let BASE_URL = "http://127.0.0.1:8000"
-// let BASE_URL = ""
+// let BASE_URL = "http://127.0.0.1:8000"   //development url
+let BASE_URL = ""   //build url
 
 class App extends Component {
 
@@ -61,14 +61,14 @@ class App extends Component {
         })
       })
       
-    // fetch(BASE_URL + '/currencies')
-    //     .then((result) => result.json())
-    //     .then((result) => {
-    //       this.setState({
-    //         EUR: result.eur,
-    //         USD: result.usd
-    //       })
-    //     })
+    fetch(BASE_URL + '/currencies')
+        .then((result) => result.json())
+        .then((result) => {
+          this.setState({
+            EUR: result.eur,
+            USD: result.usd
+          })
+        })
   }
   
   addPerson = (novejmeno) => {

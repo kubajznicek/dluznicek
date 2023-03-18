@@ -8,11 +8,12 @@
 
 # testing
 /coverage
-/python/__pycache__
-/python/Constants.py
 
 # production
 /build
+
+/python/__pycache__
+/python/Constants.py
 
 # misc
 .DS_Store
@@ -26,5 +27,4 @@ yarn-debug.log*
 yarn-error.log*
 
 log
-odMartiny
 .vscode

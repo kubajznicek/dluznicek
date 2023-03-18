@@ -8,7 +8,7 @@ import os
 import Constants
 
 root = os.path.dirname(os.path.abspath(__file__))
-currenciesURL = Constants.currenciesURL
+currenciesURL = Constants.currenciesURL     # url to currencies convertor
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="./../build/static"), name="static")
 app.mount("/images", StaticFiles(directory="./../build/images"), name="images")
